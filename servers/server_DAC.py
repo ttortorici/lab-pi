@@ -33,7 +33,7 @@ class DACServer(Server):
             volt = 0.
 
         if command == "R":
-            message_out = self.device.read_ain(int(pin))
+            message_out = str(self.device.read_ain(int(pin)))
         elif command == "W":
             self.device.write_dac(voltage=volt, channel=pin)
             message_out = f"Set DAC{pin} to {volt} V."
