@@ -3,8 +3,6 @@
 """
 
 from u6 import U6
-import time
-import numpy as np
 import struct
 from device_template import Device
 
@@ -32,15 +30,9 @@ class LabJack(Device):
     def read_ain(self, pin):
         return self.device.getAIN(pin)
 
-    def read_dac(self, channel="a"):
-        pin = 0
-        if channel.lower() == "b":
-            pin += 1
-        return self.device.getAIN(pin)
-
-    def write_dac(self, voltage, channel="a"):
+    def write_dac(self, voltage, channel="A"):
         addr = 48
-        if channel.lower == "b":
+        if channel == "B":
             addr += 1
         self.device.i2c(LabJack.DAC_ADDRESS,
                         [addr, int(((voltage * self.aSlope) + self.aOffset) / 256),

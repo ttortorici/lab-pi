@@ -11,7 +11,7 @@ import socket
 class Server:
 
     shutdown_command = b"shutdown"
-    HOST = "rogerspi"
+    HOST = "rogerspi.local"
     PORT = 62532
 
     def __init__(self, name):
