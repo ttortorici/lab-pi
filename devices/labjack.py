@@ -4,7 +4,7 @@
 
 from u6 import U6
 import struct
-from device_template import Device
+from devices.device_template import Device
 
 
 class LabJack(Device):
