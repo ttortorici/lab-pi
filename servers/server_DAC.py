@@ -10,6 +10,7 @@ from devices.labjack import LabJack
 
 class DACServer(Server):
     PORT = 23092
+    NAME = "DAC Server"
     device = LabJack()
 
     def handle(self, message: str) -> str:

@@ -13,12 +13,12 @@ class Server:
     shutdown_command = b"shutdown"
     HOST = "rogerspi.local"
     PORT = 62532
+    NAME = "template"
 
-    def __init__(self, name):
-        self.name = name
+    def __init__(self):
         self.host_port = (self.__class__.HOST, self.__class__.PORT)
         self.running = False
-        print(f"Creating {name} server.\n")
+        print(f"Creating {self.__class__.NAME} server.\n")
 
     def handle(self, message: str) -> str:
         """Parse a message of the format
