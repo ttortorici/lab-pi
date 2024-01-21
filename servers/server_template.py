@@ -18,22 +18,26 @@ class Server:
     def __init__(self):
         self.host_port = (self.__class__.HOST, self.__class__.PORT)
         self.running = False
-        print(f"Creating {self.__class__.NAME} server.\n")
+        print(f"Creating {self.__class__.NAME} server.")
 
     def handle(self, message: str) -> str:
-        """Parse a message of the format
-        [Instrument ID]::[command]::[optional message]"""
+        """
+        Parse a message of the format
+        [Instrument ID]::[command]::[optional message]
+        """
         return message[::-1]
 
     def run(self):
-        """Establishes a socket server which takes and handles commands"""
+        """
+        Establishes a socket server which takes and handles commands
+        """
         self.running = True
         # open a new socket
         with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
             s.bind(self.host_port)
 
             # confirm the socket is bound
-            print(f"Socket bound to port: {self.host_port[1]}")
+            print(f"{self.__class__.NAME} socket bound to port: {self.host_port[1]}")
 
             # put the socket into listening mode
             s.listen()
@@ -59,10 +63,3 @@ class Server:
                             msg_server = self.handle(msg_client)
                             print(f"Sending back message: {msg_server}")
                             conn.sendall(msg_server.encode())
-
-
-if __name__ == "__main__":
-    import sys
-
-    server = Server()
-    server.run()
