@@ -24,7 +24,7 @@ class Prologix:
         :param gpib_address: GPIB address to call attention to.
         :return: None
         """
-        self.port.write(f"++addr {gpib_address}")
+        self.port.write(f"++addr {gpib_address}\n".encode())
 
     def read(self) -> str:
         """
