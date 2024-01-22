@@ -10,7 +10,7 @@ import time
 
 class Prologix:
 
-    SERIAL_PORT = ""
+    SERIAL_PORT = "/dev/ttyUSB0"
     TIMEOUT = 0.1
 
     def __init__(self):
