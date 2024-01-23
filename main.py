@@ -1,4 +1,4 @@
-
+import multiprocessing as mp
 from servers.server_DAC import DACServer
 from servers.server_GPIB import GPIBServer
 
@@ -22,21 +22,11 @@ def run_gpib_server():
 
 
 if __name__ == "__main__":
-    import sys
+    mp.set_start_method('spawn')
+    p1 = mp.Process(target=run_dac_server)
+    p2 = mp.Process(target=run_gpib_server)
+    p1.start()
+    p2.start()
 
-    """Check if an argument was given to run the Prologix server"""
-    if len(sys.argv) == 1:
-        # if no argument is given, then just run the DAC server
-        run_dac_server()
-    else:
-        # if any argument is given, launch both servers as separate processes
-        import multiprocessing as mp
-
-        mp.set_start_method('spawn')
-        p1 = mp.Process(target=run_dac_server)
-        p2 = mp.Process(target=run_gpib_server)
-        p1.start()
-        p2.start()
-
-        p1.join()
-        p2.join()
+    p1.join()
+    p2.join()
