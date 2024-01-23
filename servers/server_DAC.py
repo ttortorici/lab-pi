@@ -39,11 +39,14 @@ class DACServer(Server):
             except ValueError:
                 print(f"Invalid input for pin. Gave '{pin}', but should be an int")
         elif command == "W":
-            try:
-                self.device.write_dac(voltage=float(volt), channel=pin)
-                message_out = f"Set DAC{pin} to {volt} V."
-            except ValueError:
-                print(f"Invalid input for voltage. Gave '{volt}', but should be a float")
+            if pin not in ["A", "B"]:
+                message_out = ""
+            else:
+                try:
+                    self.device.write_dac(voltage=float(volt), channel=pin)
+                    message_out = f"Set DAC{pin} to {volt} V."
+                except ValueError:
+                    print(f"Invalid input for voltage. Gave '{volt}', but should be a float")
         else:
             message_out = ""
         return message_out
