@@ -1,4 +1,4 @@
-import multiprocessing as mp
+from threading import Thread
 from servers.server_DAC import DACServer
 from servers.server_GPIB import GPIBServer
 
@@ -22,11 +22,10 @@ def run_gpib_server():
 
 
 if __name__ == "__main__":
-    mp.set_start_method('spawn')
-    p1 = mp.Process(target=run_dac_server)
-    p2 = mp.Process(target=run_gpib_server)
-    p1.start()
-    p2.start()
+    t1 = Thread(target=run_dac_server)
+    t2 = Thread(target=run_gpib_server)
+    t1.start()
+    t2.start()
 
-    p1.join()
-    p2.join()
+    t1.join()
+    t2.join()
