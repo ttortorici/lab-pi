@@ -62,4 +62,8 @@ class Server:
                             print(f"Received message: {msg_client}")
                             msg_server = self.handle(msg_client)
                             print(f"Sending back message: {msg_server}")
-                            conn.sendall(msg_server.encode())
+                            try:
+                                msg_server = msg_server.encode()
+                            except AttributeError:
+                                pass
+                            conn.sendall(msg_server)
