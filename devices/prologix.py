@@ -15,8 +15,28 @@ class Prologix:
 
     def __init__(self):
         self.id = 'Prologix GPIB Controller'
-        # self.gpib_address = gpib_address
         self.port = serial.Serial(self.SERIAL_PORT, 9600, timeout=0.5)
+
+        self.write("++mode 1")      # set to controller mode
+        s = self.port.read(256)
+        print(s)
+
+        self.write("++addr 2")
+        s = self.port.read(256)
+        print(s)
+
+        self.write("++auto 1")
+        s = self.port.read(256)
+        print(s)
+
+        self.write("*IDN?")
+        self.write("++read eoi")
+        while True:
+            s = self.port.read(256)
+            if len(s) > 0:
+                print(s)
+            else:
+                break
 
     def attention(self, gpib_address: int) -> None:
         """
@@ -32,7 +52,7 @@ class Prologix:
         :return: Message from device.
         """
         self.port.write("++read eoi\n".encode())
-        return self.port.read(256)
+        return self.port.read(256).decode()
 
     def write(self, message: str) -> None:
         """
@@ -66,3 +86,11 @@ class Prologix:
         :return: None
         """
         self.query("*RST")
+
+
+if __name__ == "__main__":
+    # class PrologixWin(Prologix):
+    #     SERIAL_PORT = "COM4"
+#
+    # gpib = PrologixWin()
+    gpib = Prologix()

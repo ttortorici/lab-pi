@@ -1,7 +1,7 @@
 import socket
 
 
-def send(message, port, host="rogerspi.local"):
+def send(message, port, host="piplus.local"):
     if message:
         with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
             # connect to server
