@@ -12,7 +12,7 @@ It is currently set up to control a LabJack U6 as a DAC and ADC and a Prologix G
 
 [lib-usb](https://libusb.info/)
     
-    sudo apt install lib-usb-1.0-0-dev
+    sudo apt install libusb-1.0-0-dev
 
 [Exodriver](https://labjack.com/pages/support?doc=/software-driver/installer-downloads/exodriver/) 
 
