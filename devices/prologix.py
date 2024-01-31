@@ -31,14 +31,14 @@ class Prologix:
         # s = self.port.read(256)
         # print(s)
 
-        self.write("*IDN?")
-        self.write("++read eoi")
-        while True:
-            s = self.port.read(256)
-            if len(s) > 0:
-                print(s)
-            else:
-                break
+        self.query("*IDN?")
+        # self.write("++read eoi")
+        # while True:
+        #     s = self.port.read(256)
+        #     if len(s) > 0:
+        #         print(s)
+        #     else:
+        #         break
 
     def attention(self, gpib_address: int) -> None:
         """
