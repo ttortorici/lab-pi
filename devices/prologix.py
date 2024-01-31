@@ -17,17 +17,19 @@ class Prologix:
         self.id = 'Prologix GPIB Controller'
         self.port = serial.Serial(self.SERIAL_PORT, 9600, timeout=0.5)
 
-        self.write("++mode 1")      # set to controller mode
-        s = self.port.read(256)
-        print(s)
+        # self.write("++mode 1")      # set to controller mode
+        # s = self.port.read(256)
+        # print(s)
 
         self.write("++addr 2")
-        s = self.port.read(256)
-        print(s)
+        # s = self.port.read(256)
+        # print(s)
+
+        self.write("++eos 2")
 
         self.write("++auto 0")
-        s = self.port.read(256)
-        print(s)
+        # s = self.port.read(256)
+        # print(s)
 
         self.write("*IDN?")
         self.write("++read eoi")
