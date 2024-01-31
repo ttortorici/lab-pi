@@ -1,4 +1,4 @@
-from threading import Thread
+# from threading import Thread
 from servers.server_DAC import DACServer
 from servers.server_GPIB import GPIBServer
 
@@ -22,10 +22,11 @@ def run_gpib_server():
 
 
 if __name__ == "__main__":
-    t1 = Thread(target=run_dac_server)
-    t2 = Thread(target=run_gpib_server)
-    t1.start()
-    t2.start()
-
-    t1.join()
-    t2.join()
+    # t1 = Thread(target=run_dac_server)
+    # t2 = Thread(target=run_gpib_server)
+    # t1.start()
+    # t2.start()
+    #
+    # t1.join()
+    # t2.join()
+    run_dac_server()
