@@ -25,7 +25,7 @@ class Prologix:
         s = self.port.read(256)
         print(s)
 
-        self.write("++auto 1")
+        self.write("++auto 0")
         s = self.port.read(256)
         print(s)
 
