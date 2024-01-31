@@ -11,7 +11,7 @@ import socket
 class Server:
 
     shutdown_command = b"shutdown"
-    HOST = "rogerspi.local"
+    HOST = "piplus.local"
     PORT = 62532
     NAME = "template"
 
