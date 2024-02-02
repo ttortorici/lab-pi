@@ -1,7 +1,7 @@
 import socket
 
 
-def send(message, port, host="piplus.local"):
+def send(message, port=23092, host="piplus.local"):
     if message:
         with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
             # connect to server
@@ -18,5 +18,5 @@ def send(message, port, host="piplus.local"):
         return "did not send anything"
 
 
-def shutdown_command(host, port):
+def shutdown_command(port=23092, host="piplus.local"):
     send("shutdown")
